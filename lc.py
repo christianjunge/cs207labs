@@ -23,25 +23,30 @@ def lc_reader(filename):
          
 class LightCurve:
     
-    def __init__(self, data, metadict):
+    def __init__(self, data): #, metadict):
         self._time = [x[0] for x in data]
         self._amplitude = [x[1] for x in data]
         self._error = [x[2] for x in data]
-        self.metadata = metadict
+        #self.metadata = metadict
         self.filename = None
     
+    """ Not needed for 20160208 lab
     @classmethod
     def from_file(cls, filename):
         lclist, metadict = lc_reader(filename)
         instance = cls(lclist, metadict)
         instance.filename = filename
         return instance
+    """
     
     def __repr__(self):
         class_name = type(self).__name__
         components = reprlib.repr(list(itertools.islice(self.timeseries,0,10)))
         components = components[components.find('['):]
-        return '{}({})'.format(class_name, components)        
+        return '{}({})'.format(class_name, components)
+
+    def __str__(self):
+
         
     #your code here
     @property
@@ -61,6 +66,12 @@ class LightCurve:
     
     def __getitem__(self, position):
         return self.timeseries[position]
+
+    """
+    def __setitem__(self, position, time, amplitude):
+        self._time[position] = time
+        self._amplitude[position] = amplitude
+    """
 
 class LightCurveDB:
     
