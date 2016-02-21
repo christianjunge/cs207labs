@@ -21,3 +21,10 @@ void bloom_init(bloom_filter_t *B, index_t size_in_bits);
 void bloom_destroy(bloom_filter_t *B);
 int bloom_check(bloom_filter_t *B, key_t k);
 void bloom_add(bloom_filter_t *B, key_t k);
+
+// I added this one to count how many bits are set.
+index_t numset(bloom_filter_t *B);
+
+int rand_generator();
+
+void counter(int *arr1, int *arr2);
